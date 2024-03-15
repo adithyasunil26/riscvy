@@ -1,0 +1,23 @@
+CAPI=2:
+
+name: ::inst_memory:0-r1
+description: abs
+
+filesets:
+  rtl:
+    files:
+      - ../rtl/inst_memory.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+  
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style]
+    toplevel: inst_memory
