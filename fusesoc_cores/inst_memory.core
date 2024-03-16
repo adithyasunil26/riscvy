@@ -1,7 +1,7 @@
 CAPI=2:
 
 name: ::inst_memory:0-r1
-description: Instruction memory module
+description: abs
 
 filesets:
   rtl:
@@ -19,5 +19,5 @@ targets:
     tools:
       verilator: 
         mode: lint-only
-        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+        verilator_options: [-Wwarn-lint -Wwarn-style]
     toplevel: inst_memory

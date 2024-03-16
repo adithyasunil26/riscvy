@@ -5,7 +5,8 @@ module inst_memory(
 
   reg [7:0] inst_mem[87:0]; //Instruction Memory
 
-  initial begin//Loading program for bubble sort into the instruction memory
+  initial //Loading program for bubble sort into the instruction memory
+  begin
     {inst_mem[3],   inst_mem[2],  inst_mem[1],  inst_mem[0]} = 32'h00000913;//1
     {inst_mem[7],   inst_mem[6],  inst_mem[5],  inst_mem[4]} = 32'h00000433;//2
     {inst_mem[11], inst_mem[10],  inst_mem[9],  inst_mem[8]} = 32'h04b40863;//3
@@ -30,7 +31,8 @@ module inst_memory(
     {inst_mem[87], inst_mem[86], inst_mem[85], inst_mem[84]} = 32'hfa000ae3;//22
   end
 
-  always @ (inst_address) begin
+  always @ (inst_address) 
+  begin
     instruction[7:0] = inst_mem[inst_address+0];
     instruction[15:8] = inst_mem[inst_address+1];
     instruction[23:16] = inst_mem[inst_address+2];
