@@ -1,0 +1,36 @@
+CAPI=2:
+
+name: imm_data_extractor
+description: Immediate data extractor
+
+filesets:
+  rtl:
+    files:
+      - rtl/imm_data_extractor.sv
+    file_type: systemVerilogSource
+
+  tb:
+    files:
+      - testing/imm_data_extractor/test.cpp
+    file_type: cppSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: imm_data_extractor
+
+  verilator_tb:
+    default_tool: verilator
+    filesets: [rtl, tb]
+    tools:
+      verilator:
+        verilator_options: [-Wno-lint -Wno-fatal --trace]
+    toplevel: imm_data_extractor
