@@ -8,16 +8,16 @@ filesets:
     files:
       - rtl/program_counter.sv
     file_type: systemVerilogSource
-  
+
   tb:
     files:
-      - testing/program_counter/test.sv
-    file_type: systemVerilogSource
+      - testing/program_counter/test.cpp
+    file_type: cppSource
 
 targets:
   default:
     filesets: [rtl]
-  
+
   lint:
     default_tool: verilator
     filesets: [rtl]
@@ -26,21 +26,11 @@ targets:
         mode: lint-only
         verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
     toplevel: program_counter
-  
+
   verilator_tb:
     default_tool: verilator
     filesets: [rtl, tb]
     tools:
       verilator:
-        verilator_options: [-Wno-lint -Wno-fatal --timing --timescale 1ns/1ps]
-    toplevel: test
-
-parameters:
-  WIDTH:
-    datatype : int
-    default  : 64
-    paramtype: vlogparam
-  CLK_PERIOD:
-    datatype : int
-    default  : 20
-    paramtype: vlogparam
+        verilator_options: [-Wno-lint -Wno-fatal --trace]
+    toplevel: program_counter
