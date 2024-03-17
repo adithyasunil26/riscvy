@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: ::fetch:0-r1
+name: fetch
 description: Fetch stage
 
 filesets:

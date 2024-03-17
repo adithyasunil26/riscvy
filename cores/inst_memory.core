@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: ::inst_memory:0-r1
+name: inst_memory
 description: Instruction memory module
 
 filesets:

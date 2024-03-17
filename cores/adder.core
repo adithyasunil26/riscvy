@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: ::adder:0-r1
+name: adder
 description: Adder
 
 filesets:

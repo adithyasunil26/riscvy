@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: ::program_counter:0-r1
+name: program_counter
 description: Progran Counter
 
 filesets:

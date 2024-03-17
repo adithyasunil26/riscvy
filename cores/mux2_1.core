@@ -1,6 +1,6 @@
 CAPI=2:
 
-name: ::mux2_1:0-r1
+name: mux2_1
 description: 2 to 1 multiplexer
 
 filesets:
