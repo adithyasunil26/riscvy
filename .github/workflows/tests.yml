@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-20.04
+    name: Verilator lint test
+    steps:
+
+    - name: Repository Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+
+    - name: Install FuseSoC
+      run: pip install fusesoc
+
+    - name: Install Verilator
+      run: sudo apt-get install -y verilator
+
+    - name: Run lint test
+      run: python scripts/lint_test.py
+  
+  tb-test:
+    runs-on: ubuntu-20.04
+    name: Verilator testbench test
+    steps:
+
+    - name: Repository Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+
+    - name: Install FuseSoC
+      run: pip install fusesoc
+
+    - name: Install Verilator
+      run: sudo apt-get install -y verilator
+
+    - name: Run verilator testbenches
+      run: python scripts/tb_test.py
