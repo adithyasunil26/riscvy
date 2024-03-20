@@ -1,17 +1,17 @@
 CAPI=2:
 
-name: fetch_decode_reg
-description: Fetch stage
+name: reg_fetch_decode
+description: fetch to decode pipeline registers
 
 filesets:
   rtl:
     files:
-      - rtl/fetch_decode_reg.sv
+      - rtl/reg_fetch_decode.sv
     file_type: systemVerilogSource
 
   tb:
     files:
-      - testing/fetch_decode_reg/test.cpp
+      - testing/reg_fetch_decode/test.cpp
     file_type: cppSource
 
 targets:
@@ -25,7 +25,7 @@ targets:
       verilator: 
         mode: lint-only
         verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
-    toplevel: fetch_decode_reg
+    toplevel: reg_fetch_decode
 
   verilator_tb:
     default_tool: verilator
@@ -33,4 +33,4 @@ targets:
     tools:
       verilator:
         verilator_options: [-Wno-lint -Wno-fatal --trace]
-    toplevel: fetch_decode_reg
+    toplevel: reg_fetch_decode

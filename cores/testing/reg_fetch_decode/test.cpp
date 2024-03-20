@@ -1,13 +1,13 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 
-#include "Vfetch_decode_reg.h" //Change module name here
+#include "Vreg_fetch_decode.h" //Change module name here
 
 using namespace std;
 
 #define MAX_TIME 10 //Set max time here in ns 
 #define PERIOD 10  //Set simulation period here in ps
-static Vfetch_decode_reg* ptop = new Vfetch_decode_reg;  //Change module name here
+static Vreg_fetch_decode* ptop = new Vreg_fetch_decode;  //Change module name here
 
 vluint64_t sim_time = 0;
 static VerilatedVcdC* tfp = new VerilatedVcdC;
@@ -32,9 +32,9 @@ static void run(uint64_t limit)
     ptop->inst_in = count;
     ptop->a_in = count+1;
     if (count%3==0){      //Modify as per module
-      ptop->write = 1;      //
+      ptop->write = 1;    //
     } else {              //
-      ptop->write = 0;      //
+      ptop->write = 0;    //
     }                     //
     if (count%10==0)       //
       ptop->flush = 1;    //

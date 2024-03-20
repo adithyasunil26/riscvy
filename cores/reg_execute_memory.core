@@ -1,0 +1,23 @@
+CAPI=2:
+
+name: reg_execute_memory
+description: execute to memory pipeline registers
+
+filesets:
+  rtl:
+    files:
+      - rtl/reg_execute_memory.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: reg_execute_memory

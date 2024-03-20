@@ -1,0 +1,23 @@
+CAPI=2:
+
+name: reg_decode_execute
+description: decode to execute pipeline registers
+
+filesets:
+  rtl:
+    files:
+      - rtl/reg_decode_execute.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: reg_decode_execute
