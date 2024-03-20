@@ -28,7 +28,7 @@ jobs:
       run: sudo apt-get install -y verilator
 
     - name: Run lint test
-      run: python scripts/lint_test.py
+      run: python .github/workflows/scripts/lint_test.py
   
   tb-test:
     runs-on: ubuntu-20.04
@@ -52,4 +52,4 @@ jobs:
       run: sudo apt-get install -y verilator
 
     - name: Run verilator testbenches
-      run: python scripts/tb_test.py
+      run: python .github/workflows/scripts/tb_test.py
