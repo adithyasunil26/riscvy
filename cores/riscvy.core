@@ -1,0 +1,36 @@
+CAPI=2:
+
+name: riscvy
+description: 5 stage pipelined RISC-V processor
+
+filesets:
+  rtl:
+    files:
+      - rtl/riscvy.sv
+    file_type: systemVerilogSource
+    depend:
+      - fetch
+      - decode
+      - execute
+      - data_mem
+      - forwarding_unit
+      - pipeline_flush
+      - hazard_detection_unit
+      - branching_unit
+      - reg_fetch_decode
+      - red_decode_execute
+      - reg_execute_memory
+      - reg_memory_writeback
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: riscvy

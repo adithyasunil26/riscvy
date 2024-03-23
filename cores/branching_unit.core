@@ -1,0 +1,23 @@
+CAPI=2:
+
+name: branching_unit
+description: Branching unit
+
+filesets:
+  rtl:
+    files:
+      - rtl/branching_unit.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: branching_unit

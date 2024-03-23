@@ -1,0 +1,23 @@
+CAPI=2:
+
+name: hazard_detection_unit
+description: Hazard detection unit
+
+filesets:
+  rtl:
+    files:
+      - rtl/hazard_detection_unit.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: hazard_detection_unit

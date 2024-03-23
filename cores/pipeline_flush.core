@@ -1,0 +1,23 @@
+CAPI=2:
+
+name: pipeline_flush
+description: Pipeline flush module
+
+filesets:
+  rtl:
+    files:
+      - rtl/pipeline_flush.sv
+    file_type: systemVerilogSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: pipeline_flush
