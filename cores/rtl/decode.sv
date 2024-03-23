@@ -2,11 +2,12 @@ module decode(
   input [31:0] inst,
   input clk,
   input reset,
+  input stall,
   output [63:0] ReadData1,
   output [63:0] ReadData2,
-  input [4:0] rs1,
-  input [4:0] rs2,
-  input [4:0] rd,
+  output [4:0] rs1,
+  output [4:0] rs2,
+  output [4:0] rd,
   input [63:0] WriteData,
   input [4:0] RD,
   output reg_write,
@@ -15,7 +16,8 @@ module decode(
   output [63:0] imm_data
 );
 
-  // wire [63:0] ;
+  wire [6:0] opcode;
+
 
   inst_parser inst_parser1(
     .inst     (inst),

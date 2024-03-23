@@ -13,9 +13,9 @@ module execute(
 );
 
   adder adder2(
-    .p(a),
-    .q(d<<1),
-    .out(adderout)
+    .a(a),
+    .b(d<<1),
+    .sum(adderout)
   );
 
   mux3_1 m3_11(
@@ -27,7 +27,7 @@ module execute(
   );
 
   mux2_1 mux2_11(
-    .A(m3_1_out2),.B(d),.SEL(Alusrc),.Y(alu_64_b)
+    .a(m3_1_out2),.b(d),.sel(Alusrc),.out(alu_64_b)
   );
 
   alu alu1(
@@ -40,9 +40,9 @@ module execute(
 
   alu_control ac
   (
-    .Aluop(aluop),
+    .aluop(aluop),
     .funct(funct4_out),
-    .operation(operation)
+    .op(operation)
   );
 
 endmodule
