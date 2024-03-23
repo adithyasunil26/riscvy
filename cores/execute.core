@@ -1,0 +1,29 @@
+CAPI=2:
+
+name: execute
+description: Execute stage
+
+filesets:
+  rtl:
+    files:
+      - rtl/execute.sv
+    file_type: systemVerilogSource
+    depend:
+      - alu
+      - alu_control
+      - adder
+      - mux2_1
+      - mux3_1
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: execute
