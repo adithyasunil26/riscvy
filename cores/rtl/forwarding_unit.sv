@@ -1,4 +1,4 @@
-module ForwardingUnit(
+module forwarding_unit(
   input [4:0] RS_1, //ID/EX.RegisterRs1
   input [4:0] RS_2, //ID/EX.RegisterRs2
   input [4:0] rdMem, //EX/MEM.Register Rd

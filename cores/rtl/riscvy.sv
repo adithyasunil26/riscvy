@@ -1,18 +1,19 @@
 module riscvy(
   input clk,
   input reset,
-  input wire[63:0] element1,
-  input wire[63:0] element2,
-  input wire[63:0] element3,
-  input wire[63:0] element4,
-  input wire[63:0] element5,
-  input wire[63:0] element6,
-  input wire[63:0] element7,
-  input wire[63:0] element8,
-  input stall,
-  input flush
+  output [63:0] element1,
+  output [63:0] element2,
+  output [63:0] element3,
+  output [63:0] element4,
+  output [63:0] element5,
+  output [63:0] element6,
+  output [63:0] element7,
+  output [63:0] element8
 );
-  
+
+  wire [31:0] inst_rfd_out;
+  wire [3:0] funct4_out;
+
   // Fetch
 
   fetch fetch_module(
@@ -39,18 +40,19 @@ module riscvy(
   // Decode
 
   decode decode_module(
-    .inst,      (inst_rfd_out),
-    .clk,       (clk),
-    .reset,     (reset),
-    .ReadData1, (readdata1),
-    .ReadData2, (readdata2),
-    .rs1,       (rs1),
-    .rs2,       (rs2),
-    .rd,        (rd),
-    .WriteData, (write_data),
-    .RD,        (RD),
-    .reg_write, (memwb_regwrite),
-    .funct3,    (funct3),
+    .inst       (inst_rfd_out),
+    .clk        (clk),
+    .reset      (reset),
+    .stall      (stall),
+    .ReadData1  (readdata1),
+    .ReadData2  (readdata2),
+    .rs1        (rs1),
+    .rs2        (rs2),
+    .rd         (rd),
+    .WriteData  (write_data),
+    .RD         (RD),
+    .reg_write  (memwb_regwrite),
+    .funct3     (funct3),
     .funct7     (funct7),
     .imm_data   (imm_data),
     .branch     (branch),
@@ -92,7 +94,7 @@ module riscvy(
     .forwardA    (forwardA),
     .forwardB    (forwardB),
     .adderout    (adderout),
-    .AluResult   (AluResult),
+    .AluResult   (AluResult)
   );
 
   reg_execute_memory rem(
@@ -105,8 +107,7 @@ module riscvy(
 
   // Memory
 
-  data_memory datamem
-  (
+  data_mem datamem_module(
     .write_data(write_Data),
     .address(exmem_out_result),
     .memorywrite(MEMEWRITE),
@@ -124,9 +125,9 @@ module riscvy(
   );
 
   reg_memory_writeback rmw(
-    .clk(clk),.reset(reset),.read_data_in(readdata),
-    .result_alu_in(exmem_out_result),.Rd_in(exmemrd),.memtoreg_in(MEMTOREG),.regwrite_in(REGWRITE),
-    .readdata(muxin1),.result_alu_out(muxin2),.rd(RD),.Memtoreg(memwb_memtoreg),.Regwrite(memwb_regwrite)
+    .clk(clk),.reset(reset),.Adder_out(readdata),
+    .Result_in_alu(exmem_out_result),.Rd_in(exmemrd),.memtoreg_in(MEMTOREG),.regwrite_in(REGWRITE),
+    .Adderout(muxin1),.result_out_alu(muxin2),.rd(RD),.Memtoreg(memwb_memtoreg),.Regwrite(memwb_regwrite)
   );
 
   // Writeback and hazard modules
@@ -144,7 +145,7 @@ module riscvy(
   );
 
   mux2_1 mux3(
-    .A(muxin2),.B(muxin1),.SEL(memwb_memtoreg),.Y(write_data)
+    .a(muxin2),.b(muxin1),.sel(memwb_memtoreg),.out(write_data)
   );
 
   forwarding_unit f1(

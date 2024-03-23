@@ -18,7 +18,7 @@ filesets:
       - hazard_detection_unit
       - branching_unit
       - reg_fetch_decode
-      - red_decode_execute
+      - reg_decode_execute
       - reg_execute_memory
       - reg_memory_writeback
 
