@@ -3,7 +3,16 @@ module decode(
   input clk,
   input reset,
   output [63:0] ReadData1,
-  output [63:0] ReadData2
+  output [63:0] ReadData2,
+  input [4:0] rs1,
+  input [4:0] rs2,
+  input [4:0] rd,
+  input [63:0] WriteData,
+  input [4:0] RD,
+  output reg_write,
+  output [2:0] funct3,
+  output [6:0] funct7,
+  output [63:0] imm_data
 );
 
   // wire [63:0] ;
@@ -23,7 +32,7 @@ module decode(
     .reset     (reset),     
     .rs1       (rs1),   
     .rs2       (rs2),   
-    .rd        (rd),  
+    .rd        (RD),  
     .WriteData (WriteData),         
     .reg_write (reg_write),         
     .ReadData1 (ReadData1),         
@@ -32,7 +41,7 @@ module decode(
     .r19       (r19),   
     .r20       (r20),   
     .r21       (r21),   
-    .r22       (r22)   
+    .r22       (r22)
   );
 
   imm_data_extractor data_extractor_1(

@@ -15,11 +15,6 @@ filesets:
       - mux2_1
       - mux3_1
 
-  tb:
-    files:
-      - testing/execute/test.cpp
-    file_type: cppSource
-
 targets:
   default:
     filesets: [rtl]
@@ -31,12 +26,4 @@ targets:
       verilator: 
         mode: lint-only
         verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
-    toplevel: execute
-
-  verilator_tb:
-    default_tool: verilator
-    filesets: [rtl, tb]
-    tools:
-      verilator:
-        verilator_options: [-Wno-lint -Wno-fatal --trace]
     toplevel: execute
