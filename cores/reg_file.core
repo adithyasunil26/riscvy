@@ -1,0 +1,36 @@
+CAPI=2:
+
+name: reg_file
+description: Register file
+
+filesets:
+  rtl:
+    files:
+      - rtl/reg_file.sv
+    file_type: systemVerilogSource
+
+  tb:
+    files:
+      - testing/reg_file/test.cpp
+    file_type: cppSource
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: reg_file
+
+  verilator_tb:
+    default_tool: verilator
+    filesets: [rtl, tb]
+    tools:
+      verilator:
+        verilator_options: [-Wno-lint -Wno-fatal --trace]
+    toplevel: reg_file

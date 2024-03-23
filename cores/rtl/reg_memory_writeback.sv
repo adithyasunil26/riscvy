@@ -1,4 +1,4 @@
-module execute_memory_reg(
+module reg_memory_writeback(
   input clk,
   input reset,
   input [63:0] Adder_out,      //adder output

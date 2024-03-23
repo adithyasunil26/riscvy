@@ -1,4 +1,4 @@
-module fetch_decode_reg(
+module reg_fetch_decode(
   input clk,
   input reset,
   input flush,

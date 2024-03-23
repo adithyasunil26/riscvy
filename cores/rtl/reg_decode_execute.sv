@@ -1,4 +1,4 @@
-module decode_execute_reg(
+module reg_decode_execute(
   input clk,
   input reset,
   input [3:0] funct4_in,     //funct4 of instruction from instruction memory
@@ -16,7 +16,7 @@ module decode_execute_reg(
   input aluSrc_in,
   input regwrite_in,        //from control unit
   input [1:0] Aluop_in,
-  input flush, 
+  input flush,
   output reg [63:0] a,
   output reg [4:0] rs1,
   output reg [4:0] rs2,

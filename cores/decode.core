@@ -1,0 +1,28 @@
+CAPI=2:
+
+name: decode
+description: Decode stage
+
+filesets:
+  rtl:
+    files:
+      - rtl/decode.sv
+    file_type: systemVerilogSource
+    depend:
+      - inst_parser
+      - control_unit
+      - reg_file
+      - imm_data_extractor
+
+targets:
+  default:
+    filesets: [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets: [rtl]
+    tools:
+      verilator: 
+        mode: lint-only
+        verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: decode
