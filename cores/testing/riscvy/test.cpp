@@ -1,4 +1,4 @@
-// Empty testbench
+// Empty testbench 
 
 #include <verilated.h>
 #include <verilated_vcd_c.h>
