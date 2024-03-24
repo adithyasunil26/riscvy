@@ -22,6 +22,11 @@ filesets:
       - reg_execute_memory
       - reg_memory_writeback
 
+  tb:
+    files:
+      - testing/riscvy/test.cpp
+    file_type: cppSource
+
 targets:
   default:
     filesets: [rtl]
@@ -33,4 +38,12 @@ targets:
       verilator: 
         mode: lint-only
         verilator_options: [-Wwarn-lint -Wwarn-style -Wno-fatal]
+    toplevel: riscvy
+
+  verilator_tb:
+    default_tool: verilator
+    filesets: [rtl, tb]
+    tools:
+      verilator:
+        verilator_options: [-Wno-lint -Wno-fatal --trace]
     toplevel: riscvy
