@@ -13,7 +13,14 @@ module decode(
   output reg_write,
   output [2:0] funct3,
   output [6:0] funct7,
-  output [63:0] imm_data
+  output [63:0] imm_data,
+  output branch,
+  output memread,
+  output memtoreg,
+  output memwrite,
+  output aluSrc,
+  output regwrite,
+  output [1:0] Aluop
 );
 
   wire [6:0] opcode;
