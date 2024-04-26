@@ -2,6 +2,8 @@
 
 [![Tests](https://github.com/adithyasunil26/riscvy/actions/workflows/tests.yml/badge.svg)](https://github.com/adithyasunil26/riscvy/actions/workflows/tests.yml)
 
+[Work in progress]
+
 A simple 5 stage RISC-V ISA based pipelined processor with forwarding, stalling, and flushing functionality.
 
 ## Getting Started
